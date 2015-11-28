@@ -68,10 +68,10 @@ if __name__ == '__main__':
     while True:
         names = ', '.join(couples.keys())
         santa = raw_input('\n\nwho r u? {}\n'.format(names))
-        santee = santa_map[santa]
-
-        applescript = applescript_tpl.format(santee, santa)
-        
-        subprocess.call("osascript -e '{}'".format(applescript), shell=True)
-
+        try:
+            santee = santa_map[santa.lower().strip()]
+            applescript = applescript_tpl.format(santee, santa)
+            subprocess.call("osascript -e '{}'".format(applescript), shell=True)
+        except:
+            print('no no no you idiot-- type your name')
 
